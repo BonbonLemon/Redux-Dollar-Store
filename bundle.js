@@ -62,7 +62,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	var _actions = __webpack_require__(180);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	window.selectCurrency = _actions.selectCurrency;
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  _reactDom2.default.render(_react2.default.createElement(_widget2.default, { store: _store2.default }), document.getElementById('root'));
@@ -21674,6 +21678,17 @@
 /***/ function(module, exports) {
 
 	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var selectCurrency = exports.selectCurrency = function selectCurrency(baseCurrency, rates) {
+	  return {
+	    type: "SWITCH_CURRENCY",
+	    baseCurrency: baseCurrency,
+	    rates: rates
+	  };
+	};
 
 /***/ },
 /* 181 */
