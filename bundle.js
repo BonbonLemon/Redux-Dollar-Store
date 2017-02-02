@@ -62,11 +62,13 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(180);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	window.selectCurrency = _actions.selectCurrency;
+	// import { selectCurrency } from './actions';
+	// import reducer from './reducer';
+	//
+	// window.selectCurrency = selectCurrency;
+	// window.reducer = reducer;
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  _reactDom2.default.render(_react2.default.createElement(_widget2.default, { store: _store2.default }), document.getElementById('root'));
@@ -21528,8 +21530,6 @@
 	
 	var _actions = __webpack_require__(180);
 	
-	var _actions2 = _interopRequireDefault(_actions);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21551,7 +21551,7 @@
 	    // require this component to re-render whenever the store's state changes
 	    _this.props.store.subscribe(_this.forceUpdate);
 	    _this.currencies = ["USD", "EUR", "CAD", "JPY", "GBP", "CNY"];
-	    _this.selectCurrency = _actions2.default.bind(_this);
+	    _this.selectCurrency = _actions.selectCurrency.bind(_this);
 	    return _this;
 	  }
 	
@@ -22762,7 +22762,16 @@
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 	  var action = arguments[1];
 	
-	  return state; // remove this and fill out the body of the reducer function
+	  switch (action.type) {
+	    case "SWITCH_CURRENCY":
+	      return {
+	        baseCurrency: action.baseCurrency,
+	        rates: action.rates
+	      };
+	      break;
+	    default:
+	      return state;
+	  }
 	};
 	
 	exports.default = reducer;
